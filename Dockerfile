@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y \
 # Instalar dependencias Python (cache de Docker)
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir gunicorn
+    pip install --no-cache-dir -r requirements.txt
 
 # Copiar código
 COPY . .

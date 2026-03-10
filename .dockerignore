@@ -12,6 +12,7 @@ __pycache__/
 
 # Archivos de desarrollo
 .env
+.env.*
 .env.local
 .env.*.local
 

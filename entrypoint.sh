@@ -9,6 +9,7 @@ echo "=== Gestión de Taller - Backend ==="
 echo "[1/3] Esperando que PostgreSQL esté listo..."
 
 # Esperar a que la BD esté disponible (max 30 intentos)
+DB_READY=false
 for i in $(seq 1 30); do
     python -c "
 from app.core.config import settings
@@ -17,10 +18,15 @@ engine = create_engine(settings.SQLALCHEMY_DATABASE_URI)
 conn = engine.connect()
 conn.close()
 print('PostgreSQL conectado!')
-" && break
+" && { DB_READY=true; break; }
     echo "  Intento $i/30 - BD no disponible, esperando 2s..."
     sleep 2
 done
+
+if [ "$DB_READY" = false ]; then
+    echo "ERROR: No se pudo conectar a la base de datos despues de 30 intentos"
+    exit 1
+fi
 
 echo "[2/3] Inicializando tablas de base de datos..."
 python -c "
