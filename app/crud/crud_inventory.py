@@ -132,7 +132,7 @@ class CRUDCategory(CRUDBase[Category, CategoryCreate, CategoryCreate]):
 
     def get_all_names(self, db: Session) -> List[str]:
         """Obtener lista de nombres de categorías (sin duplicados)"""
-        results = db.query(Category.nombre).distinct().order_by(func.lower(Category.nombre)).all()
+        results = db.query(Category.nombre).distinct().order_by(Category.nombre).all()
         return [r[0] for r in results]
 
     def update(
