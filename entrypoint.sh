@@ -28,11 +28,18 @@ if [ "$DB_READY" = false ]; then
     exit 1
 fi
 
-echo "[2/3] Inicializando tablas de base de datos..."
+echo "[2/3] Inicializando tablas y datos por defecto..."
 python -c "
-from app.db.init_db import init_db
+from app.db.init_db import init_db, create_default_user
+from app.db.session import SessionLocal
 init_db()
 print('Tablas creadas/verificadas.')
+db = SessionLocal()
+try:
+    create_default_user(db)
+finally:
+    db.close()
+print('Datos iniciales verificados.')
 "
 
 echo "[3/3] Iniciando servidor..."
