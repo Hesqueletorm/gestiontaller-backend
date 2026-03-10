@@ -1,0 +1,45 @@
+{
+  "app": "gestiondetaller-backend",
+  "description": "Backend de Gestión de Taller - Sistema de gestión para talleres mecánicos",
+  "environment": {
+    "development": {
+      "host": "127.0.0.1",
+      "port": 8001,
+      "reload": true,
+      "workers": 1
+    },
+    "production": {
+      "host": "0.0.0.0",
+      "port": 8001,
+      "reload": false,
+      "workers": 4
+    },
+    "docker": {
+      "host": "0.0.0.0",
+      "port": 8001,
+      "internal_port": 8001,
+      "external_port": 8001,
+      "reload": false,
+      "workers": 4
+    }
+  },
+  "dependencies": {
+    "database": {
+      "type": "sqlite",
+      "path": "./data/lubricentro.db"
+    }
+  },
+  "cors": {
+    "allowed_origins": [
+      "http://localhost:3001",
+      "http://127.0.0.1:3001",
+      "http://localhost:3000",
+      "http://127.0.0.1:3000"
+    ]
+  },
+  "features": {
+    "email_service": true,
+    "2fa_totp": true,
+    "rate_limiting": true
+  }
+}

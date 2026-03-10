@@ -1,0 +1,18 @@
+fastapi
+uvicorn
+gunicorn
+sqlalchemy
+psycopg2-binary
+alembic
+pydantic
+pydantic-settings
+python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+email-validator
+
+# Seguridad adicional
+pyotp>=2.9.0          # TOTP para 2FA
+qrcode[pil]>=7.4      # Generación de QR codes para 2FA
+bcrypt>=4.0.0         # Hash de contraseñas (más seguro)
